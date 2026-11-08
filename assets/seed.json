@@ -1,0 +1,178 @@
+{
+  "products": [
+    {
+      "id": "p_coconut",
+      "code": "JD022123",
+      "name": "Coconut Donut",
+      "price": 3200,
+      "isNew": true,
+      "discount": null,
+      "image": "coconut",
+      "description": "Enjoy our scrumptious donut, coated in chocolate and finished with a delicate coconut drizzle. A little bite of happiness for any mood."
+    },
+    {
+      "id": "p_strawberry",
+      "code": "JD022124",
+      "name": "Coco Donut",
+      "price": 3200,
+      "isNew": false,
+      "discount": 15,
+      "image": "strawberry",
+      "description": "Strawberry icing and colourful sprinkles on a soft ring donut."
+    },
+    {
+      "id": "p_violet",
+      "code": "JD022125",
+      "name": "Blueberry Donut",
+      "price": 3500,
+      "isNew": false,
+      "discount": null,
+      "image": "violet",
+      "description": "A soft donut dipped in a vibrant blueberry glaze."
+    },
+    {
+      "id": "p_coffee",
+      "code": "JD022126",
+      "name": "Iced Americano",
+      "price": 4500,
+      "isNew": false,
+      "discount": null,
+      "image": "coffee",
+      "description": "Espresso over ice with a crisp, clean finish."
+    },
+    {
+      "id": "p_orange",
+      "code": "JD022127",
+      "name": "Orange Glaze",
+      "price": 3400,
+      "isNew": false,
+      "discount": 15,
+      "image": "orange",
+      "description": "A golden ring donut with a bright orange glaze."
+    },
+    {
+      "id": "p_candy",
+      "code": "JD022128",
+      "name": "Party Donut",
+      "price": 3600,
+      "isNew": false,
+      "discount": null,
+      "image": "candy",
+      "description": "Our fluffy donut topped with crunchy candy pieces."
+    }
+  ],
+  "banners": [
+    {
+      "title": "Sweet moments start here",
+      "subtitle": "Discover your new favourite",
+      "image": "assortment"
+    },
+    {
+      "title": "A little treat for every mood",
+      "subtitle": "Explore the seasonal lineup",
+      "image": "violet"
+    },
+    {
+      "title": "Coffee meets donuts",
+      "subtitle": "Make it a combo",
+      "image": "coffee"
+    }
+  ],
+  "sections": [
+    {
+      "title": "Seasonal specials",
+      "ids": [
+        "p_strawberry",
+        "p_orange",
+        "p_candy"
+      ]
+    },
+    {
+      "title": "Popular 🔥",
+      "ids": [
+        "p_coconut",
+        "p_coffee",
+        "p_violet"
+      ]
+    },
+    {
+      "title": "Order again",
+      "ids": [
+        "p_coconut",
+        "p_coffee"
+      ]
+    }
+  ],
+  "shops": [
+    {
+      "name": "Hledan J’Donuts",
+      "address": "Kamayut, Yangon",
+      "image": "shop"
+    },
+    {
+      "name": "Junction City J’Donuts",
+      "address": "Pabedan, Yangon",
+      "image": "shop"
+    },
+    {
+      "name": "Myanmar Plaza J’Donuts",
+      "address": "Bahan, Yangon",
+      "image": "shop"
+    },
+    {
+      "name": "Time City J’Donuts",
+      "address": "Sanchaung, Yangon",
+      "image": "shop"
+    }
+  ],
+  "members": [
+    {
+      "name": "Hania",
+      "image": "member",
+      "tier": "Silver",
+      "points": 680000,
+      "remaining": 500,
+      "goal": 900000,
+      "notifications": 3,
+      "badge": 3
+    }
+  ],
+  "challenges": [
+    {
+      "title": "Eat 4 Coco donuts",
+      "current": 4,
+      "goal": 4,
+      "points": 100,
+      "image": "strawberry",
+      "coffee": false,
+      "gift": false
+    },
+    {
+      "title": "Eat 4 Coco donuts",
+      "current": 1,
+      "goal": 4,
+      "points": 100,
+      "image": "strawberry",
+      "coffee": false,
+      "gift": false
+    },
+    {
+      "title": "Drink 12 cups americano",
+      "current": 9,
+      "goal": 12,
+      "points": 100,
+      "image": "coffee",
+      "coffee": true,
+      "gift": false
+    },
+    {
+      "title": "A sweet gift",
+      "current": 0,
+      "goal": 1,
+      "points": 100,
+      "image": "candy",
+      "coffee": false,
+      "gift": true
+    }
+  ]
+}

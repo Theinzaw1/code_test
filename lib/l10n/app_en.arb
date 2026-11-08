@@ -1,0 +1,114 @@
+{
+  "onboarding": "Round food for every mood",
+  "start": "LET’S GET STARTED",
+  "login": "Log in",
+  "continueLabel": "CONTINUE",
+  "phone": "Enter your phone number",
+  "verify": "Verify your number",
+  "name": "What’s your name?",
+  "birthday": "What’s your date of birth?",
+  "welcome": "Welcome to the world of J’Donuts",
+  "explore": "LET’S EXPLORE",
+  "offline": "Offline · showing saved data",
+  "home": "Home",
+  "rewards": "Rewards",
+  "rewardTitle": "J’Donuts Rewards",
+  "settings": "Settings",
+  "logout": "Log out",
+  "legalIntro": "By continuing, you agree to our",
+  "terms": "Terms of Use",
+  "privacy": "Privacy Policy",
+  "google": "Google",
+  "apple": "Apple",
+  "facebook": "Facebook",
+  "back": "Back",
+  "phoneField": "Phone number",
+  "phoneError": "Enter a valid Myanmar mobile number.",
+  "unknownNumber": "This number has no account.",
+  "registerNumber": "Register this number",
+  "resend": "Resend",
+  "firstName": "First name",
+  "lastName": "Last name (optional)",
+  "month": "Month (MM)",
+  "day": "Day (DD)",
+  "year": "Year (YYYY)",
+  "locked": "Too many attempts. Wait to resend.",
+  "wrongCode": "Incorrect code. Try again.",
+  "otpField": "Verification code",
+  "noProducts": "No products available.",
+  "noShops": "No shops available.",
+  "exploreNow": "Explore now",
+  "orderOnline": "Order online",
+  "retry": "Retry",
+  "offers": "Offers",
+  "memberProfile": "Member profile",
+  "seasonal": "Seasonal specials",
+  "popular": "Popular",
+  "orderAgain": "Order again",
+  "shops": "Nearby shops",
+  "unavailableProduct": "This product is unavailable.",
+  "productError": "Could not load product · Retry",
+  "newBadge": "NEW",
+  "decreaseQuantity": "Decrease quantity",
+  "increaseQuantity": "Increase quantity",
+  "description": "What’s this?",
+  "rewardPreview": "Your rewards are shown below.",
+  "pointsError": "Could not load points · Retry",
+  "noChallenges": "No challenges yet.",
+  "challengeError": "Could not load challenges · Retry",
+  "eatMore": "Eat more earn more",
+  "gift": "Gift",
+  "totalPoints": "Total points",
+  "currentTier": "You’re here now",
+  "futureTier": "You’ll be here soon",
+  "earn": "EARN",
+  "challengeComplete": "Challenge complete!",
+  "menu": "Menu",
+  "orders": "Orders",
+  "menuPreview": "Menu preview",
+  "ordersPreview": "Orders preview",
+  "restoreError": "Could not restore session · Retry",
+  "otpSent": "We sent a six-digit code to {phone}.",
+  "@otpSent": {
+    "placeholders": {
+      "phone": {
+        "type": "String"
+      }
+    }
+  },
+  "birthError": "Enter a valid date. You must be at least {age}.",
+  "@birthError": {
+    "placeholders": {
+      "age": {
+        "type": "int"
+      }
+    }
+  },
+  "stepCount": "Step {step} of 4",
+  "@stepCount": {
+    "placeholders": {
+      "step": {
+        "type": "int"
+      }
+    }
+  },
+  "addToCart": "ADD TO CART    {total}",
+  "@addToCart": {
+    "placeholders": {
+      "total": {
+        "type": "String"
+      }
+    }
+  },
+  "added": "Added {quantity} × {product}",
+  "@added": {
+    "placeholders": {
+      "quantity": {
+        "type": "int"
+      },
+      "product": {
+        "type": "String"
+      }
+    }
+  }
+}
