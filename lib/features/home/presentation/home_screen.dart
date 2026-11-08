@@ -179,7 +179,7 @@ class _BannersState extends State<_Banners> {
   Widget build(BuildContext context) => Column(
     children: [
       SizedBox(
-        height: 158,
+        height: MediaQuery.textScalerOf(context).scale(158),
         child: PageView.builder(
           controller: controller,
           onPageChanged: (index) => setState(() => page = index),
@@ -282,6 +282,7 @@ class _Section extends StatelessWidget {
                 return SizedBox(
                   width: 128,
                   child: Material(
+                    key: ValueKey(hero),
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
                     clipBehavior: Clip.antiAlias,

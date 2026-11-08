@@ -39,8 +39,12 @@ class _RewardsScreenState extends ConsumerState<RewardsScreen> {
                       ),
                     ),
                     if (member.value case final value?)
-                      Entry(
-                        index: 2,
+                      TweenAnimationBuilder<double>(
+                        tween: Tween(begin: .6, end: 1),
+                        duration: Motion.use(context, Motion.entrance),
+                        curve: Motion.pop,
+                        builder: (_, scale, child) =>
+                            Transform.scale(scale: scale, child: child),
                         child: DonutButton(
                           'Rewards  ${value.badge}',
                           color: Palette.orange,
@@ -299,10 +303,17 @@ class _Tiers extends StatelessWidget {
                         : 0,
                   ),
                   duration: Motion.use(context, Motion.progress),
-                  builder: (_, value, _) => LinearProgressIndicator(
-                    value: value,
-                    color: Palette.pink,
-                    backgroundColor: Palette.fog,
+                  builder: (_, value, _) => ColoredBox(
+                    color: Palette.fog,
+                    child: Align(
+                      alignment: Alignment.topCenter,
+                      heightFactor: 1,
+                      child: FractionallySizedBox(
+                        heightFactor: value,
+                        widthFactor: 1,
+                        child: const ColoredBox(color: Palette.pink),
+                      ),
+                    ),
                   ),
                 ),
               ),
@@ -312,6 +323,30 @@ class _Tiers extends StatelessWidget {
     ],
   );
 }
+
+// The last row preserves alpha so the artwork filter cannot color its backdrop.
+const _grayscale = ColorFilter.matrix(<double>[
+  .2126,
+  .7152,
+  .0722,
+  0,
+  0,
+  .2126,
+  .7152,
+  .0722,
+  0,
+  0,
+  .2126,
+  .7152,
+  .0722,
+  0,
+  0,
+  0,
+  0,
+  0,
+  1,
+  0,
+]);
 
 class _ChallengeCard extends StatelessWidget {
   const _ChallengeCard(this.challenge);
@@ -335,7 +370,7 @@ class _ChallengeCard extends StatelessWidget {
               tween: Tween(begin: 0, end: challenge.current / challenge.goal),
               duration: Motion.use(context, Motion.progress),
               curve: Motion.curve,
-              child: ClipOval(child: FoodImage(challenge.image)),
+              child: FoodImage(challenge.image),
               builder: (context, progress, image) => challenge.coffee
                   ? CustomPaint(
                       painter: RingPainter(
@@ -347,21 +382,20 @@ class _ChallengeCard extends StatelessWidget {
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(10),
-                        child: image,
+                        child: ClipOval(child: image),
                       ),
                     )
-                  : Stack(
-                      fit: StackFit.expand,
-                      children: [
-                        ColorFiltered(
-                          colorFilter: const ColorFilter.mode(
-                            Colors.grey,
-                            BlendMode.saturation,
+                  : ClipOval(
+                      child: Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          ColorFiltered(colorFilter: _grayscale, child: image),
+                          ClipPath(
+                            clipper: _QuarterClip(progress),
+                            child: image,
                           ),
-                          child: image,
-                        ),
-                        ClipPath(clipper: _QuarterClip(progress), child: image),
-                      ],
+                        ],
+                      ),
                     ),
             ),
           ),
@@ -414,10 +448,15 @@ class _QuarterClip extends CustomClipper<Path> {
   const _QuarterClip(this.progress);
   final double progress;
   @override
-  Path getClip(Size size) => Path()
-    ..moveTo(size.width / 2, size.height / 2)
-    ..arcTo(Offset.zero & size, -math.pi / 2, math.pi * 2 * progress, false)
-    ..close();
+  Path getClip(Size size) {
+    final bounds = Offset.zero & size;
+    if (progress >= 1) return Path()..addOval(bounds);
+    return Path()
+      ..moveTo(size.width / 2, size.height / 2)
+      ..arcTo(bounds, -math.pi / 2, math.pi * 2 * progress, false)
+      ..close();
+  }
+
   @override
   bool shouldReclip(_QuarterClip oldClipper) => oldClipper.progress != progress;
 }

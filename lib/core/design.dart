@@ -25,6 +25,7 @@ abstract final class Motion {
   static const stagger = Duration(milliseconds: 85);
   static const carousel = Duration(seconds: 5);
   static const curve = Curves.easeOutCubic;
+  static const pop = Curves.easeOutBack;
 
   static Duration use(BuildContext context, Duration duration) =>
       MediaQuery.disableAnimationsOf(context) ? Duration.zero : duration;
