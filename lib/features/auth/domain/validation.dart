@@ -1,4 +1,7 @@
 const minimumAge = 13;
+const monthsPerYear = 12;
+const maxDayOfMonth = 31;
+const birthYearDigits = 4;
 const fakeOtp = '123456';
 const otpLength = 6;
 const resendDelay = Duration(minutes: 5);
@@ -23,15 +26,32 @@ String? nameError(String input, {required bool required}) {
   return null;
 }
 
-DateTime? birthDate(String month, String day, String year, DateTime now) {
+DateTime? calendarDate(String month, String day, String year) {
   final m = int.tryParse(month);
   final d = int.tryParse(day);
   final y = int.tryParse(year);
-  if (m == null || d == null || y == null || y < 1 || y > now.year) return null;
+  if (m == null ||
+      m < 1 ||
+      m > monthsPerYear ||
+      d == null ||
+      d < 1 ||
+      d > maxDayOfMonth ||
+      year.length != birthYearDigits ||
+      y == null ||
+      y < 1) {
+    return null;
+  }
   final date = DateTime(y, m, d);
-  if (date.year != y || date.month != m || date.day != d) return null;
+  return date.month == m && date.day == d ? date : null;
+}
+
+DateTime? birthDate(String month, String day, String year, DateTime now) {
+  final date = calendarDate(month, day, year);
+  if (date == null) return null;
   final age =
-      now.year - y - ((now.month * 100 + now.day < m * 100 + d) ? 1 : 0);
+      now.year -
+      date.year -
+      (now.month * 100 + now.day < date.month * 100 + date.day ? 1 : 0);
   return age >= minimumAge ? date : null;
 }
 

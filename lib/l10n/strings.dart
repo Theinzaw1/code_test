@@ -513,6 +513,30 @@ abstract class Strings {
   /// **'We sent a six-digit code to {phone}.'**
   String otpSent(String phone);
 
+  /// No description provided for @monthRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a month from 1 to 12.'**
+  String get monthRange;
+
+  /// No description provided for @dayRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a day from 1 to 31.'**
+  String get dayRange;
+
+  /// No description provided for @dayForMonth.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a valid day for this month and year.'**
+  String get dayForMonth;
+
+  /// No description provided for @yearRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter a year from 0001 to {maxYear}.'**
+  String yearRange(int maxYear);
+
   /// No description provided for @birthError.
   ///
   /// In en, this message translates to:

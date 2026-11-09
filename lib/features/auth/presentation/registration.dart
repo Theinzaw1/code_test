@@ -376,20 +376,57 @@ class _RegistrationState extends ConsumerState<Registration> {
             : null,
       ),
     ],
-    _ => [
-      field(month, Strings.of(context).month, digits: 2),
-      field(day, Strings.of(context).day, digits: 2),
-      field(year, Strings.of(context).year, digits: 4),
-      if (month.text.isNotEmpty &&
-          day.text.isNotEmpty &&
-          year.text.length == 4 &&
-          birth == null)
+    _ => birthFields(),
+  };
+
+  List<Widget> birthFields() {
+    final strings = Strings.of(context);
+    final now = DateTime.now();
+    final yearValue = int.tryParse(year.text);
+    final completeYear = year.text.length == birthYearDigits;
+    final invalidYear =
+        completeYear &&
+        (yearValue == null || yearValue < 1 || yearValue > now.year);
+    final date = calendarDate(month.text, day.text, year.text);
+    final invalidDay =
+        completeYear &&
+        !invalidYear &&
+        (int.tryParse(month.text) ?? 0) > 0 &&
+        day.text.isNotEmpty &&
+        date == null;
+
+    return [
+      field(
+        month,
+        strings.month,
+        digits: 2,
+        maxValue: monthsPerYear,
+        errorText: month.text == '0' ? strings.monthRange : null,
+      ),
+      field(
+        day,
+        strings.day,
+        digits: 2,
+        maxValue: maxDayOfMonth,
+        errorText: day.text == '0'
+            ? strings.dayRange
+            : invalidDay
+            ? strings.dayForMonth
+            : null,
+      ),
+      field(
+        year,
+        strings.year,
+        digits: birthYearDigits,
+        errorText: invalidYear ? strings.yearRange(now.year) : null,
+      ),
+      if (!invalidYear && date != null && birth == null)
         Text(
-          Strings.of(context).birthError(minimumAge),
+          strings.birthError(minimumAge),
           style: TextStyle(color: Theme.of(context).colorScheme.error),
         ),
-    ],
-  };
+    ];
+  }
 
   Widget field(
     TextEditingController controller,
@@ -399,6 +436,7 @@ class _RegistrationState extends ConsumerState<Registration> {
     String? prefix,
     TextInputType? keyboard,
     int? digits,
+    int? maxValue,
   }) => Padding(
     padding: const EdgeInsets.only(bottom: 12),
     child: TextField(
@@ -410,7 +448,16 @@ class _RegistrationState extends ConsumerState<Registration> {
           ? null
           : [
               FilteringTextInputFormatter.digitsOnly,
-              LengthLimitingTextInputFormatter(digits),
+              TextInputFormatter.withFunction((previous, next) {
+                if (next.text.length > digits) return previous;
+                if (maxValue == null || next.text.isEmpty || next.text == '0') {
+                  return next;
+                }
+                final value = int.tryParse(next.text);
+                return value != null && value >= 1 && value <= maxValue
+                    ? next
+                    : previous;
+              }),
             ],
       onChanged: (_) => setState(() {
         error = null;

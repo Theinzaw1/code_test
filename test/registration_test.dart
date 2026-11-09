@@ -94,11 +94,38 @@ void main() {
       expect(tester.widget<FilledButton>(continueButton).onPressed, isNotNull);
       await tester.tap(continueButton);
       await tester.pumpAndSettle();
+      await tester.enterText(field('Month (MM)'), '12');
+      await tester.enterText(field('Month (MM)'), '13');
+      expect(
+        tester.widget<TextField>(field('Month (MM)')).controller?.text,
+        '12',
+      );
+      await tester.enterText(field('Day (DD)'), '31');
+      await tester.enterText(field('Day (DD)'), '32');
+      expect(
+        tester.widget<TextField>(field('Day (DD)')).controller?.text,
+        '31',
+      );
+      await tester.enterText(field('Year (YYYY)'), '200');
+      await tester.pump();
+      expect(tester.widget<FilledButton>(continueButton).onPressed, isNull);
+      final currentYear = DateTime.now().year;
+      await tester.enterText(field('Year (YYYY)'), '${currentYear + 1}');
+      await tester.pump();
+      expect(
+        find.text('Enter a year from 0001 to $currentYear.'),
+        findsOneWidget,
+      );
+      expect(tester.widget<FilledButton>(continueButton).onPressed, isNull);
       await tester.enterText(field('Month (MM)'), '02');
       await tester.enterText(field('Day (DD)'), '30');
       await tester.enterText(field('Year (YYYY)'), '2000');
       await tester.pump();
       expect(tester.widget<FilledButton>(continueButton).onPressed, isNull);
+      expect(
+        find.text('Enter a valid day for this month and year.'),
+        findsOneWidget,
+      );
       await tester.enterText(field('Day (DD)'), '29');
       await tester.pump();
       expect(tester.widget<FilledButton>(continueButton).onPressed, isNotNull);

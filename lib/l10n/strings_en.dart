@@ -222,6 +222,20 @@ class StringsEn extends Strings {
   }
 
   @override
+  String get monthRange => 'Enter a month from 1 to 12.';
+
+  @override
+  String get dayRange => 'Enter a day from 1 to 31.';
+
+  @override
+  String get dayForMonth => 'Enter a valid day for this month and year.';
+
+  @override
+  String yearRange(int maxYear) {
+    return 'Enter a year from 0001 to $maxYear.';
+  }
+
+  @override
   String birthError(int age) {
     return 'Enter a valid date. You must be at least $age.';
   }

@@ -76,6 +76,15 @@
       }
     }
   },
+  "monthRange": "Enter a month from 1 to 12.",
+  "dayRange": "Enter a day from 1 to 31.",
+  "dayForMonth": "Enter a valid day for this month and year.",
+  "yearRange": "Enter a year from 0001 to {maxYear}.",
+  "@yearRange": {
+    "placeholders": {
+      "maxYear": { "type": "int" }
+    }
+  },
   "birthError": "Enter a valid date. You must be at least {age}.",
   "@birthError": {
     "placeholders": {
